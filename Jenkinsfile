@@ -20,8 +20,7 @@ pipeline {
                 }
                 stage('Pip Install') {
                     steps {
-                        sh 'pip install --root-user-action=ignore --upgrade pip'
-                        sh 'pip install --root-user-action=ignore django mysqlclient'
+                        sh 'pip install -r requirements.txt'
                     }
                 }
                 stage('Tests') {
