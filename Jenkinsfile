@@ -59,6 +59,15 @@ pipeline {
                         sh 'docker rmi $IMAGENAME:latest'
                     }
                 }
+                stage('SSH a VPS') {
+                    steps {
+                        sshagent(['SSH_USUARIO']) {
+                            sh 'ssh -o StrictHostKeyChecking=no juanje@tesis.juanje.net docker rmi -f $IMAGENAME:latest'
+                            sh 'ssh -o StrictHostKeyChecking=no juanje@tesis.juanje.net wget https://raw.githubusercontent.com/GitHubeMail1ASIR/django-docker/main/docker-compose.yaml -O docker-compose.yaml'
+                            sh 'ssh -o StrictHostKeyChecking=no juanje@tesis.juanje.net docker-compose up -d --force-recreate'
+                        }
+                    }
+                }
             }
         }
     }
