@@ -38,6 +38,11 @@ pipeline {
                         git branch:'main',url:'https://github.com/GitHubeMail1ASIR/django-docker.git'
                     }
                 }
+                stage('Prebuild sin caché') {
+                    steps {
+                        sh 'docker build --no-cache -t $IMAGENAME:latest .'
+                    }
+                }
                 stage('Build') {
                     steps {
                         script {
