@@ -56,7 +56,7 @@ pipeline {
                 }
                 stage('Borrar Imagen') {
                     steps {
-                        sh "docker rmi $IMAGENAME:latest"
+                        sh "docker rmi -f $IMAGENAME:latest"
                     }
                 }
                 stage('SSH a VPS') {
